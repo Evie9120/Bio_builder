@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Biology Builder | Lab Whiteboard Style</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="bio.css">
+</head>
+<body>
+<div id="G">
+
+<div class="scr on" id="s-home">
+  <div style="text-align:center">
+    <div style="font-size:52px; margin-bottom:10px"><i class="fas fa-microscope"></i></div>
+    <h1>Biology Builder</h1>
+    <p class="tagline">Build · Experiment · Discover</p>
+    <div id="home-xp-info" style="margin:10px 0"></div>
+    <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap">
+      <button class="btn btn-go" onclick="go('s-map')"><i class="fas fa-play"></i> Play</button>
+      <button class="btn" onclick="go('s-achievements')"><i class="fas fa-trophy"></i> Achievements</button>
+      <button class="btn" id="sound-btn" onclick="toggleSound()"><i class="fas fa-volume-up"></i> Sound On</button>
+    </div>
+    <p style="margin-top:14px; font-size:12px; cursor:pointer; text-decoration:underline" onclick="if(confirm('Reset all?')){localStorage.removeItem('bbv2');location.reload()}"><i class="fas fa-undo-alt"></i> Reset progress</p>
+  </div>
+</div>
+
+<div class="scr" id="s-map">
+  <div style="display:flex; justify-content:space-between; margin-bottom:10px">
+    <h1><i class="fas fa-map"></i> Level map</h1>
+    <div style="text-align:right">
+      <div id="map-xp">0 XP</div>
+      <div id="map-level">Level 1</div>
+    </div>
+  </div>
+  <div class="xp-bar-wrap"><div class="xp-bar-fill" id="map-xpbar"></div></div>
+  <div id="level-list" class="level-list"></div>
+  <button class="btn back-btn" onclick="go('s-home')"><i class="fas fa-arrow-left"></i> Home</button>
+</div>
+
+<div class="scr" id="s-game">
+  <div class="game-top-bar">
+    <button class="btn small" onclick="go('s-map')"><i class="fas fa-arrow-left"></i> Map</button>
+    <div class="level-xp">
+      <div id="g-level-name" class="level-name">—</div>
+      <div class="xp-bar-wrap"><div class="xp-bar-fill" id="g-xpbar"></div></div>
+    </div>
+    <div id="g-hearts" class="hearts"><i class="fas fa-heart"></i><i class="fas fa-heart"></i><i class="fas fa-heart"></i></div>
+    <div id="g-timer" style="display:none"></div>
+    <div class="streak-badge" id="g-streak" style="display:none"><i class="fas fa-fire"></i> x1</div>
+  </div>
+  <div id="g-scenario" class="scenario-banner" style="display:none"></div>
+  <div id="g-content"></div>
+  <div id="g-feedback" class="fb" style="display:none"></div>
+  <div id="float-layer" style="position:relative; height:0"></div>
+</div>
+
+<div class="scr" id="s-result">
+  <div style="text-align:center">
+    <div id="r-emoji" style="font-size:48px"><i class="fas fa-check-circle"></i></div>
+    <h1 id="r-title">Done!</h1>
+    <p id="r-subtitle"></p>
+    <div id="r-stars" style="font-size:26px"></div>
+    <div id="r-rank"></div>
+    <div class="card stats-card" style="display:grid; grid-template-columns:1fr 1fr; gap:10px; background:#f8fafc; border-radius:20px; padding:12px; margin:12px 0">
+      <div><p>Accuracy</p><div id="r-acc">—</div></div>
+      <div><p>XP earned</p><div id="r-xp">—</div></div>
+      <div><p>Best streak</p><div id="r-streak">—</div></div>
+      <div><p>Mistakes</p><div id="r-mistakes">—</div></div>
+    </div>
+    <div class="card" id="r-fact" style="background:#f8fafc; border-radius:20px; padding:12px; margin:12px 0"></div>
+    <div id="r-ach"></div>
+    <div style="display:flex; gap:8px; justify-content:center; margin-top:14px">
+      <button class="btn" onclick="go('s-map')"><i class="fas fa-map"></i> Map</button>
+      <button class="btn btn-go" onclick="retryLevel()"><i class="fas fa-redo-alt"></i> Retry</button>
+      <button class="btn btn-go" id="r-next" style="display:none" onclick="nextLevel()"><i class="fas fa-arrow-right"></i> Next</button>
+    </div>
+  </div>
+</div>
+
+<div class="scr" id="s-achievements">
+  <h1><i class="fas fa-medal"></i> Achievements</h1>
+  <div id="ach-list" class="ach-list"></div>
+  <button class="btn back-btn" onclick="go('s-home')"><i class="fas fa-arrow-left"></i> Home</button>
+</div>
+
+</div>
+<script src="bio.js"></script>
+</body>
+</html>
+<script src="kitchen.js"></script>
+</body>
+</html>
